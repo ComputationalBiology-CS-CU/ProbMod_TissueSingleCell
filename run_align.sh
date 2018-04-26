@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PREFIX="1yr"
+PREFIX="22yr"
 
 source init.sh
 
@@ -13,6 +13,7 @@ if [ -f "$bamfile" ] && [ -s "$bamfile" ]; then
     continue
 fi
 fastq-dump -O fastq ${ID}
+mkdir sam/${PREFIX}
 ./lib/STAR/source/STAR --genomeDir index_dir/index_22/  --runThreadN 8 --readFilesIn fastq/${ID}.fastq --outFileNamePrefix sam/${PREFIX}/${ID}
 rm fastq/${ID}.fastq
 mkdir bam/${PREFIX}

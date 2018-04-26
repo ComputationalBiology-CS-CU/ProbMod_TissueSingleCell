@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PREFIX="1yr"
+PREFIX="21yr"
 
 source init.sh
 
