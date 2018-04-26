@@ -1,8 +1,8 @@
 #!/bin/bash
 
-PREFIX="22yr"
+#PREFIX="1yr"
 
-source init.sh
+#source init.sh
 
 for ID in "$@"
 do
