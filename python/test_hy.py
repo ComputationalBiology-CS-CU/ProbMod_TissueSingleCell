@@ -8,23 +8,21 @@ from collections import Counter
 
 
 if __name__ == "__main__":
-
-
 	################################################
-	filename = "SRR3562219.vcf"
+	filename = "../out/out_10.vcf"
 	file = open(filename, 'r')
 	count = 0
-	upper = 584							## NOTE: we have redundant lines
+	upper = 30							## NOTE: we have redundant lines
 	while count<upper:
 		file.readline()
 		count+=1
 
 	##
-	print "+++++++++++++++++++++++ id line:"
-	print file.readline().strip()
+	print("+++++++++++++++++++++++ id line:")
+	print(file.readline().strip())
 
 	##
-	print "+++++++++++++++++++++++ content:"
+	print("+++++++++++++++++++++++ content:")
 	repo = Counter()
 	list_count = []
 	count00 = 0
@@ -38,7 +36,7 @@ if __name__ == "__main__":
 		##
 		line0 = line[::]
 		line = line.split('\t')[9:]				## NOTE: the position to start
-		line = map(lambda x: x.split(':')[0], line)
+		line = list(map(lambda x: x.split(':')[0], line))
 
 		## number of genotyped individuals
 		count = len(line) - line.count("./.")
@@ -58,16 +56,15 @@ if __name__ == "__main__":
 		count11 += line.count('2/2')
 		count11 += line.count('2/3')
 	file.close()
-	print "genotype statistics (all sites all individuals):"
-	print repo
-	print "count00, count01, count11:"
-	print count00, count01, count11
-
+	print("genotype statistics (all sites all individuals):")
+	print(repo)
+	print("count00, count01, count11:")
+	print(count00, count01, count11)
 
 	## histogram
 	list_count = np.array(list_count)
-	n, bins, patches = plt.hist(list_count, 9, alpha=0.75)
-	plt.axvline(list_count.mean(), color='k', linestyle='dashed', linewidth=1)
+	n, bins, patches = plt.hist(list_count, bins=16, alpha=0.75)
+	#plt.axvline(list_count.mean(), color='k', linestyle='dashed', linewidth=1)
 	#
 	plt.xlabel('# of non-./. genotype')
 	plt.ylabel('frequency')
