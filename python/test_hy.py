@@ -2,11 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from collections import Counter
 
-
-
-
-
-
 if __name__ == "__main__":
 	################################################
 	filename = "../out/out_10.vcf"
